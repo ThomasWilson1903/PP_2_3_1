@@ -25,10 +25,7 @@ public class AppConfig {
 
     private Environment env;
 
-    @Autowired
-    public AppConfig(Environment environment){
-        this.env = environment;
-    }
+
 
     @Bean
     public DataSource getDataSource() {

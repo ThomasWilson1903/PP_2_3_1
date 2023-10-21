@@ -5,9 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text="${message}"></p>
-<th:block th:each="msg : ${messages}">
-    <h1 th:text="${msg}"></h1>
-</th:block>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Lastname</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${user}">
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+</div>
+</p>
 </body>
 </html>
