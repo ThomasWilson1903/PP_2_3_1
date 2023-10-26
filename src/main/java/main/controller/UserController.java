@@ -37,20 +37,6 @@ public class UserController {
         return "newUser";
     }
 
-
-    /*@GetMapping("/save")
-    public String saveUser(
-            @RequestParam(name = "firstName", required = true) String name,
-            @RequestParam(name = "lastName", required = true) String surName,
-            @RequestParam(name = "email", required = true) String email
-    ) {
-        User user = new User();
-        user.setEmail(email);
-        user.setFirstName(name);
-        user.setLastName(surName);
-        userServices.saveUser(user);
-        return mainPage;
-    }*/
     @GetMapping("/save")
     public String saveUser(@ModelAttribute("user") User user) {
         userServices.saveUser(user);
