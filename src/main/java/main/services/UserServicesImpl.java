@@ -9,8 +9,12 @@ import java.util.List;
 
 @Component
 public class UserServicesImpl implements UserServices {
-    @Autowired
+
     private UserDao userDao;
+    @Autowired
+    public UserServicesImpl(UserDao userDao){
+        this.userDao = userDao;
+    }
 
     @Override
     public List<User> getAllUsers() {

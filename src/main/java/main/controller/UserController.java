@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
+
     UserServices userServices;
 
-    String mainPage = "index";
+    @Autowired
+    public UserController(UserServices userServices){
+        this.userServices = userServices;
+    }
+
+    String mainPage = "users";
     @GetMapping()
     public String show(Model model) {
         model.addAttribute("user", userServices.getAllUsers());
@@ -26,11 +31,17 @@ public class UserController {
         model.addAttribute("user", userServices.getUser(id));
         return mainPage;
     }
+    @GetMapping ("/new")
+    public String newUser(Model model) {
+        model.addAttribute("newUser", new User());
+        return "newUser";
+    }
 
-    @PostMapping("/save")
+
+    /*@GetMapping("/save")
     public String saveUser(
-            @RequestParam(name = "name", required = true) String name,
-            @RequestParam(name = "surname", required = true) String surName,
+            @RequestParam(name = "firstName", required = true) String name,
+            @RequestParam(name = "lastName", required = true) String surName,
             @RequestParam(name = "email", required = true) String email
     ) {
         User user = new User();
@@ -39,12 +50,17 @@ public class UserController {
         user.setLastName(surName);
         userServices.saveUser(user);
         return mainPage;
+    }*/
+    @GetMapping("/save")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userServices.saveUser(user);
+        return "redirect:/user";
     }
 
-    @PostMapping("/del/{id}")
-    public String del(@PathVariable("id") int id, Model model) {
+    @GetMapping("/del")
+    public String del(@RequestParam("id") int id) {
         userServices.deleteUser(id);
-        return mainPage;
+        return "redirect:/user";
     }
 
 }
