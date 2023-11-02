@@ -1,6 +1,11 @@
 package main.model;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 
 @Entity
 @Table(name = "users")
@@ -11,13 +16,18 @@ public class User {
     @Column(name = "id", length = 255, nullable = false)
     private int id;
 
-    @Column(name = "name", length = 255, nullable = false)
+    @Column(name = "name", length = 255)
+    @Pattern(regexp = "^[a-zA-Z]+$")
+    @NotNull
     private String firstName;
 
-    @Column(name = "last_name", length = 255, nullable = false)
+    @Column(name = "last_name", length = 255)
+    @Pattern(regexp = "^[a-zA-Z]+$")
+    @NotNull
     private String lastName;
 
     @Column(name = "email", length = 255, nullable = false)
+    @Email
     private String email;
 
     @Override
