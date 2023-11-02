@@ -17,17 +17,18 @@ public class User {
     private int id;
 
     @Column(name = "name", length = 255)
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "error firstName")
     @NotNull
     private String firstName;
 
     @Column(name = "last_name", length = 255)
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "error lastName")
     @NotNull
     private String lastName;
 
-    @Column(name = "email", length = 255, nullable = false)
-    @Email
+    @Column(name = "email", length = 255)
+    @NotNull
+    @Email(message = "error e-mail")
     private String email;
 
     @Override
