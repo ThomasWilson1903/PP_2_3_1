@@ -8,16 +8,16 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", length = 255, nullable = false)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 255, nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", length = 255, nullable = false)
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 255, nullable = false)
     private String email;
 
     @Override
